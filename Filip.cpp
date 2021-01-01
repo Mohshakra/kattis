@@ -3,10 +3,13 @@
 #include <string.h> 
 using namespace std ;
 
-
+/**
+ * takes the numbers and calcualte the module 10 ,100 , 1000. 
+ * it compare the results recursively.
+*/
 int mod = 10 ;
 int compare(int first_num , int second_num){
-    int first_num_m;
+    int first_num_m;    
     int second_num_m;
     first_num_m = first_num % mod ;
     second_num_m = second_num % mod ;
