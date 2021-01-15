@@ -5,6 +5,19 @@ using namespace std;
 int arr[365];
 int count = 0; 
 
+
+int calc_nonzero(int arr[]){
+	int non_zero = 0;
+	for(int i = 0 ; i < 365; i++){
+		if(arr[i] !=0){
+			non_zero++;
+		}
+	}
+	return non_zero;
+}
+
+
+
 bool check(int arr[], int number){
 
 	for(int i = 0 ; i < 365 ; i++ ){
@@ -13,7 +26,7 @@ bool check(int arr[], int number){
 		}
 		}
 	return false;
-	}
+}
 
 
 
@@ -23,7 +36,7 @@ void add(int first_int , int second_int){
 
 	for(first_int ; first_int <= second_int ; first_int++ ){
 		
-		if(check(arr, first_int)==false){
+		if(check(arr, first_int) == false){
 			arr[count++] = first_int;
 		}
 		else {
@@ -36,11 +49,19 @@ void add(int first_int , int second_int){
 
 int main(){
 	
-
-	add(4,7);
-	add(1,5);
-	add(7,9); 	
-	add(2,6);	
+	int events = 0;
+	cin >> events;
+	int first_num , second_num;
+	for(int ii = 0; ii< events ; ii++){
+		cin >> first_num;
+		cin >> second_num;
+		add(first_num, second_num);
+	}
+	
+	 	
+		
+	cout <<	calc_nonzero(arr);
+	cout << "\n";
 	return 0;
 }
 
@@ -52,9 +73,9 @@ int main(){
  * Take in the quentity of the events.
  * Take in first events days.@
  * Fyll up the days in an array.@
- * take in the second events days.
- * fyll up the same array and check if the numbers already exists.
- * continue to do the same on all events.
+ * take in the second events days.@
+ * fyll up the same array and check if the numbers already exists.@
+ * continue to do the same on all events.@
  * return the length of the array.
  * 
 */
