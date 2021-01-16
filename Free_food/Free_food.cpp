@@ -2,11 +2,10 @@
 #include <iostream>
 
 using namespace std;
-int arr[365];
 int count = 0; 
 
 
-int calc_nonzero(int arr[]){
+int calc_nonzero(vector<int>&arr ){
 	int non_zero = 0;
 	for(int i = 0 ; i < 365; i++){
 		if(arr[i] !=0){
@@ -18,7 +17,7 @@ int calc_nonzero(int arr[]){
 
 
 
-bool check(int arr[], int number){
+bool check(vector<int> &arr , int number){
 
 	for(int i = 0 ; i < 365 ; i++ ){
 		if(arr[i] == number ){
@@ -49,6 +48,7 @@ void add(int first_int , int second_int){
 
 int main(){
 	
+	vector <int> arr;
 	int events = 0;
 	cin >> events;
 	int first_num , second_num;
@@ -60,7 +60,7 @@ int main(){
 	
 	 	
 		
-	cout <<	calc_nonzero(arr);
+	cout <<	calc_nonzero(&arr);
 	cout << "\n";
 	return 0;
 }
