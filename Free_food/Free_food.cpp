@@ -1,25 +1,20 @@
 // länk : https://open.kattis.com/problems/freefood
 #include <iostream>
-
+#include <vector>
 using namespace std;
 int count = 0; 
 
 
-int calc_nonzero(vector<int>&arr ){
-	int non_zero = 0;
-	for(int i = 0 ; i < 365; i++){
-		if(arr[i] !=0){
-			non_zero++;
-		}
-	}
-	return non_zero;
+int calc_nonzero( vector<int>&arr ){
+
+	return arr.size();
 }
 
 
 
-bool check(vector<int> &arr , int number){
+bool check(const vector<int> &arr , int number){
 
-	for(int i = 0 ; i < 365 ; i++ ){
+	for(int i = 0 ; i < arr.size() ; i++ ){
 		if(arr[i] == number ){
 			return true;
 		}
@@ -30,13 +25,13 @@ bool check(vector<int> &arr , int number){
 
 
 
-void add(int first_int , int second_int){
+void add(int first_int , int second_int, vector <int> &arr){
 	
 
 	for(first_int ; first_int <= second_int ; first_int++ ){
 		
 		if(check(arr, first_int) == false){
-			arr[count++] = first_int;
+			arr.push_back(first_int);
 		}
 		else {
 			continue;
@@ -55,12 +50,12 @@ int main(){
 	for(int ii = 0; ii< events ; ii++){
 		cin >> first_num;
 		cin >> second_num;
-		add(first_num, second_num);
+		add(first_num, second_num, arr);
 	}
 	
 	 	
 		
-	cout <<	calc_nonzero(&arr);
+	cout <<	calc_nonzero(arr);
 	cout << "\n";
 	return 0;
 }
@@ -78,7 +73,7 @@ int main(){
  * continue to do the same on all events.@
  * return the length of the array.
  * 
-*/
+/
 
 
 /**
