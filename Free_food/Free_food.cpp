@@ -5,12 +5,6 @@ using namespace std;
 int count = 0; 
 
 
-int calc_nonzero( vector<int>&arr ){
-
-	return arr.size();
-}
-
-
 
 bool check(const vector<int> &arr , int number){
 
@@ -55,7 +49,7 @@ int main(){
 	
 	 	
 		
-	cout <<	calc_nonzero(arr);
+	cout <<	arr.size();
 	cout << "\n";
 	return 0;
 }
