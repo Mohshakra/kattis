@@ -5,57 +5,84 @@
 using namespace std;
 
 int occurence = 0;
+string checker(vector <int> &amount){
 
+		if(amount.size() == 1){
+			return "EVEN";
+		}
+		else
+		{
+			for(int i = 1 ; i < amount.size() ; i++){
+				
+				if(amount[1]== amount[i])
+					continue ;
+				else{
+					return "NOT EVEN" ;
+				}
+				
+			}
+			return "EVEN";
+	
+		}
+	
+			
+}
 
 int main(){
 
 	vector <char> line;
 	vector <int> amount;
+	amount.push_back(0);
 	char test_char;
 	int first_occur = 0 ;
+
+	
+
+
+
 	while(1){
 		test_char=fgetc(stdin);
-				
+		
 		if(test_char != '\n' ){
 			line.push_back(test_char);
 			
 			if(test_char == '.'){
-				
 				first_occur++;
+				continue ;
 			}
-
-
-			if((test_char =='*')&& ((first_occur!=0))) {
+			
+			else if((test_char =='*') && ((first_occur!=0))) {
 				amount.push_back(first_occur);
-
 				first_occur = 0;
 
 			}
-			if (test_char=='*')
+			else if (test_char=='*')
 			{
-				amount.push_back(0);
+				amount.push_back(0) ;
+				first_occur = 0 ;
+				
 			}
-			
-			else
-			{
-				continue;
-			}
-			
-
-			
-
-			
-			
-			
-			
 		}
 		else{
+			
 			break;
 		}
 	}
+	int size_of_amount = amount.size();
+	cout << "\n";
+	cout << "the size is : " << size_of_amount;
+	cout << "\n";
 
-	for(int i = 0 ; i <= amount.size(); i++){
+	cout << "\n";
+	cout << "the checker is :" <<  checker(amount);
+	cout << "\n";
+
+
+
+	for(int i = 0 ; i < size_of_amount; i++){
 				cout << amount[i];
+				//
+
 			cout << "\n" ;
 			}
 
