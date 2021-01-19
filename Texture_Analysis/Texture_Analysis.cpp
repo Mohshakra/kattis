@@ -12,7 +12,7 @@ string checker(vector <int> &amount){
 		}
 		else
 		{
-			for(int i = 1 ; i < amount.size() ; i++){
+			for(int i = 2 ; i < amount.size() ; i++){
 				
 				if(amount[1]== amount[i])
 					continue ;
@@ -58,7 +58,7 @@ int main(){
 			}
 			else if (test_char=='*')
 			{
-				amount.push_back(0) ;
+				// amount.push_back(0) ;
 				first_occur = 0 ;
 				
 			}
