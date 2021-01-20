@@ -4,6 +4,17 @@
 using namespace std;
 
 int occurence = 0;
+/** 
+ * Checker()
+ * input an array of quantity of stars and dots. 
+ * Expect the last one there is atleast one dot 
+ * i.e. *.** amount.size is 3
+ * i.e. *** amount.size is 3
+ * 
+ * return : EVEN | NOT EVEN depends on the input.
+
+*/
+
 string checker(vector <int> &amount){
 		if(amount.size() == 1){
 			return "EVEN";
@@ -22,18 +33,23 @@ string checker(vector <int> &amount){
 }
 
 int main(){
-	vector <char> line;
 	vector <int> amount;
 	vector <string> result;
-	// amount.push_back(0);
 	char test_char;
 	int first_occur = 0 ;
+
+	/**
+	 * Reads the chars until it get a new_line.
+	 * Saves the answer (EVEN | NOT EVEN) in results.
+	 * and reset the amount.
+	 * 
+	 *   
+	*/
 
 	while(1){
 		test_char=fgetc(stdin);
 
 		if((test_char != 'E') && (test_char != '\n')){
-			line.push_back(test_char);
 			if(test_char == '.'){
 				first_occur++;
 				continue ;
@@ -57,18 +73,11 @@ int main(){
 			break;
 		}
 	}
-	int size_of_amount = amount.size();
 
-	// cout << "\n";
-	// cout << "the size is : " << size_of_amount;
-	// cout << "\n";
 
-	// cout << "\n";
-	// cout << "the checker is :" <<  checker(amount);
-	// cout << "\n";
 
+	// prints the results.
 	for(int i = 0 ; i < result.size(); i++){
-				// cout << amount[i];
 				cout << i + 1  <<  " "  << result[i];
 			 	cout << "\n" ;
 			}
@@ -82,16 +91,13 @@ int main(){
  * 
  * Algorithm
  * 
- * get input until you get END
- * each input will be saved in array
  * 
- * check the first star
- * save the next symbole in a variable.
- * calculate each dot until it get star. clc_occur()
- * save the amount in a variable. return from calc_occur()
- * when get a star recalculate the dots and save it
- * 	in another variable
+ * Check each row until it gets "\n" but not "END"
+ * pass the answer to checker to return either EVEN nor NOT EVEN.
  * 
+ * continue input until you get END
+ * 
+ * checker()
  * compare the first variable and second variable and 
  * tell if even or not even.
  * 
@@ -100,6 +106,13 @@ int main(){
 
 /**
  * input 
+ * *.**** 
+ * ***
+ * *.*.*.* 
+ * *..*.*
  * 
- * 
+ * NOT EVEN
+ * EVEN
+ * EVEN
+ * NOT EVEN
 */
