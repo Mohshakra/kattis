@@ -32,7 +32,8 @@ int main(){
 
 	vector <char> line;
 	vector <int> amount;
-	amount.push_back(0);
+	vector <string> result;
+	// amount.push_back(0);
 	char test_char;
 	int first_occur = 0 ;
 
@@ -58,7 +59,7 @@ int main(){
 			}
 			else if (test_char=='*')
 			{
-				// amount.push_back(0) ;
+				amount.push_back(0) ;
 				first_occur = 0 ;
 				
 			}
@@ -81,8 +82,6 @@ int main(){
 
 	for(int i = 0 ; i < size_of_amount; i++){
 				cout << amount[i];
-				//
-
 			cout << "\n" ;
 			}
 
