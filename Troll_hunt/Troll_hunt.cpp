@@ -25,17 +25,6 @@ int main(){
     else{
         cout  << days  ;
     }
-
-    
-    
-
-
-
-
-
-
-
-
     return 0 ;
 }
 
@@ -44,11 +33,17 @@ int main(){
 /**
  * Algorithm
  * 
- * 
+ * Take the input.
+ * calculate the groups, days. reduce the number of days by 1 .
+ * when rest of stones is not 0, add an extra day.
+ * print the reslut.
  * 
 */
 
 
 /**
  * input
+ * 
+ * 5 2 1 > 2
+ * 10 5 2 > 5
 */
