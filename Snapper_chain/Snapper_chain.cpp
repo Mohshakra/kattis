@@ -11,7 +11,7 @@ int tunnel(vector<int> &arr){
             return i ;
         }
     }
-    return -2 ;
+    return -1 ;
 }
 /**
  * it flips the 0 to 1 and vice versa. when the array is ones then flip everythings to zeros.
@@ -19,7 +19,7 @@ int tunnel(vector<int> &arr){
  * return the ticked array.
 */
 vector<int> tick(vector<int> &arr , int index){
-    if(index != -2){
+    if(index != -1){
         for(int i = 0 ; i <= index ; i++){
             arr[i] = !arr[i] ; 
             }
@@ -34,7 +34,7 @@ vector<int> tick(vector<int> &arr , int index){
 }
 
 string checker(vector<int> &arr ){
-    if(tunnel(arr) != -2 || arr.size() ==0){
+    if(tunnel(arr) != -1 || arr.size() ==0){
         return "OFF";
     }
     else {
@@ -47,38 +47,44 @@ string checker(vector<int> &arr ){
 int main(){
 
     vector <int> arrs ;
-    int number_of_devices , number_of_attemps;
-    cin >> number_of_devices;
-    cin >> number_of_attemps;
-    for(int i = 0; i < number_of_devices ; i++){
-        arrs.push_back(0);
-    }
-
-
-    vector <int> arrs_temp = arrs;
-
-    cout << "v = { ";
-        for (int n : arrs_temp ) {
-            std::cout << n << ",";
-        }
-    cout << "} \n";    
-
-
-
-    int count = 0 ; 
     vector <int> to_print ;
-    while(count < number_of_attemps){
-        to_print = tick(arrs_temp ,tunnel(arrs_temp)); 
-        cout << "v = { ";
-        for (int n : to_print ) {
-            std::cout << n << ",";
-        }
-        cout << "} \n";
-        to_print = to_print;
-        count++ ;
-    }
+    vector <string> results ;
+
+    int number_of_devices , number_of_attemps , number_of_tests ;
+    int number_of_tests_counter = 0;
+    cin >> number_of_tests;
+   
     
-    cout << checker(to_print);
+    while(number_of_tests_counter < number_of_tests){
+        cin >> number_of_devices;
+        cin >> number_of_attemps;
+       
+        
+        for(int i = 0; i < number_of_devices ; i++){
+            arrs.push_back(0);
+        }
+        vector <int> arrs_temp = arrs;
+        int count = 0 ; 
+        while(count < number_of_attemps){
+            to_print = tick(arrs_temp ,tunnel(arrs_temp)); 
+            to_print = to_print;
+            count++ ;
+        }
+        results.push_back(checker(to_print));
+        
+
+        arrs.clear();
+        arrs_temp.clear();
+        to_print.clear();
+
+        number_of_tests_counter++ ;
+    }
+
+    int cases = 0;
+    for (string n : results ) {
+            cout << "Case #"<< ++cases << ": " << n << "\n" ;
+        }
+  
 
     return 0;
 }
@@ -94,3 +100,11 @@ int main(){
  * 1 0 > Case #1: OFF
  * 
 */
+
+/** Usful code.
+    cout << "v = { ";
+        for (int n : arrs_temp ) {
+            std::cout << n << ",";
+        }
+    cout << "} \n";    
+    **/
