@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <chrono> 
+using namespace std::chrono; 
 
 using namespace std ;
 // it takes an array and going through the tunnel of 1:th 
@@ -16,7 +18,7 @@ int tunnel(vector<int> &arr){
 /**
  * it flips the 0 to 1 and vice versa. when the array is ones then flip everythings to zeros.
  * otherwise it flips the ones until first zero.
- * return the ticked array.
+ * return the flipped array.
 */
 vector<int> tick(vector<int> &arr , int index){
     if(index != -1){
@@ -32,7 +34,10 @@ vector<int> tick(vector<int> &arr , int index){
     return arr ;
 
 }
-
+/**
+ * Checker check if last element is 1 or the whole array then returns 1. 
+ * or zero if the last element is 0 then returns 0.
+*/
 string checker(vector<int> &arr ){
     if(tunnel(arr) != -1 || arr.size() ==0){
         return "OFF";
@@ -46,36 +51,35 @@ string checker(vector<int> &arr ){
 
 int main(){
 
-    vector <int> arrs ;
-    vector <int> to_print ;
-    vector <string> results ;
+    vector <int> initial_state_zeros ;  // The intial array with zeros. 
+    vector <int> temp_array ; // temp storge for the states.
+    vector <string> results ; // It holds the results ON/OFF for all inputs arrays. 
 
-    int number_of_devices , number_of_attemps , number_of_tests ;
+    int number_of_devices , quantity_of_snaps , number_of_questions ;
     int number_of_tests_counter = 0;
-    cin >> number_of_tests;
+    cin >> number_of_questions;
    
-    
-    while(number_of_tests_counter < number_of_tests){
+    while(number_of_tests_counter < number_of_questions){
         cin >> number_of_devices;
-        cin >> number_of_attemps;
+        cin >> quantity_of_snaps;
        
-        
         for(int i = 0; i < number_of_devices ; i++){
-            arrs.push_back(0);
+            initial_state_zeros.push_back(0);
         }
-        vector <int> arrs_temp = arrs;
+
+        vector <int> new_state = initial_state_zeros; //hold the states for continues computing
         int count = 0 ; 
-        while(count < number_of_attemps){
-            to_print = tick(arrs_temp ,tunnel(arrs_temp)); 
-            to_print = to_print;
+        while(count < quantity_of_snaps){
+            temp_array = tick(new_state ,tunnel(new_state)); 
+            temp_array = temp_array;
             count++ ;
         }
-        results.push_back(checker(to_print));
-        
 
-        arrs.clear();
-        arrs_temp.clear();
-        to_print.clear();
+        results.push_back(checker(temp_array));
+        // clear all arrays to take the next "question".
+        initial_state_zeros.clear();
+        new_state.clear();
+        temp_array.clear();
 
         number_of_tests_counter++ ;
     }
@@ -84,13 +88,20 @@ int main(){
     for (string n : results ) {
             cout << "Case #"<< ++cases << ": " << n << "\n" ;
         }
-  
+
 
     return 0;
 }
 
 /**
  * Algorithm
+ * 
+ * takes quntity of the questions.
+ * initilize an array with zeros
+ * go through the array as long as every state is "1" from index 0 to nth.
+ * flip the first "0" after last "1".
+ * if every state is "1" then it returns "ON", and flips the whole array to zeros
+ * else it returns OFF if the last state is "0".
  * 
 */
 
@@ -103,7 +114,7 @@ int main(){
 
 /** Usful code.
     cout << "v = { ";
-        for (int n : arrs_temp ) {
+        for (int n : new_state ) {
             std::cout << n << ",";
         }
     cout << "} \n";    
